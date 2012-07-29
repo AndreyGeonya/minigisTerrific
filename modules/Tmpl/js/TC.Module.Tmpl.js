@@ -2,6 +2,13 @@
     "use strict";
     Tc.Module.Tmpl = Tc.Module.extend({
         _cache: {},
+
+        /**
+         * Simple JavaScript Templating
+         * John Resig - http://ejohn.org/ - MIT Licensed
+         * @param {String} str
+         * @param {Object} data
+         */
         tmpl: function tmpl(str, data) {
             // Figure out if we're getting a template, or if we need to
             // load the template - and be sure to cache the result.
@@ -30,12 +37,10 @@
            
             // Provide some basic currying to the user
             return data ? fn( data ) : fn;
-        };
+        },
 
         /**
          * Hook function to trigger events.
-         *
-         * @method after
          */
         after: function() {
             this.fire('tmplInit', this.tmpl);
