@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"></meta>
+        <title>2GIS API and TerrificJS example</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="vendors/terrific.js"></script>
+        <script type="text/javascript" src="bootstrap.js" defer="defer"></script>
+
+        <!-- Should be combined to the one file on deploy -->
+        <link rel="stylesheet" type="text/css" href="modules/Search/css/search.css" />
+        <script type="text/javascript" src="modules/Search/js/TC.Module.Search.js"></script>
+        
+        <script type="text/javascript" src="modules/Tmpl/js/TC.Module.Tmpl.js"></script>
+    </head>
+    <body>
+        <div class="page">
+            <div class="head-box">
+                <div class="mod mod-search"></div>
+            </div>
+            <div class="left-box"></div>
+            <div class="main-box"></div>
+
+            <div class="mod mod-tmpl"></div>
+        </div>
+
+        <!-- Templates should be auto generated and included on deploy -->
+        <script type="text/html" id="tmpl-search">
+            <label>Что: <input type="text" /></label>
+            <label>Где: <input type="text" /></label>
+            <input type="button" value="Найти" />
+        </script>
+    </body>
+</html>

@@ -1,0 +1,9 @@
+.mod-search {
+    background-color: #A5B2BA;
+    width: 600px;
+    margin-top: 25px;
+}
+
+.mod-search label input {
+    width: 200px;
+}
