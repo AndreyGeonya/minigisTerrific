@@ -2,9 +2,13 @@
     "use strict";
     Tc.Module.Search = Tc.Module.extend({
         /**
+         * Tmpl engine object.
+         */
+        tmpl: null,
+
+        /**
          * Initializes the Search module.
          *
-         * @method init
          * @constructor
          * @param {jQuery} $ctx the jquery context
          * @param {Sandbox} sandbox the sandbox to get the resources from
@@ -13,12 +17,31 @@
         init: function($ctx, sandbox, modId) {
             // call base constructor
             this._super($ctx, sandbox, modId);
-            
-            console.log('init Search!');
+
+            // mix event handlers
+            $.extend(this, Tc.Module.SearchEventHandler);
         },
 
-        on: function() {
-            
+        /**
+         * This function will be called on add module to the app.
+         */
+        on: function(callback) {
+            callback();
+        },
+
+        /**
+         * Hook function to trigger events.
+         */
+        after: function() {},
+
+        /**
+         * Draws html form.
+         */
+        drawSearchForm: function() {
+            var html;
+
+            html = this.tmpl($('#tmpl-search').text(), {});
+            this.$ctx[0].innerHTML = html;
         }
     });
 })(Tc.$);

@@ -1,14 +1,15 @@
 (function($) {
     "use strict";
+
     Tc.Module.Tmpl = Tc.Module.extend({
         _cache: {},
 
         /**
-         * Simple JavaScript Templating
-         * John Resig - http://ejohn.org/ - MIT Licensed
-         * @param {String} str
-         * @param {Object} data
-         */
+          * Simple JavaScript Templating
+          * John Resig - http://ejohn.org/ - MIT Licensed
+          * @param {String} str
+          * @param {Object} data
+          */
         tmpl: function tmpl(str, data) {
             // Figure out if we're getting a template, or if we need to
             // load the template - and be sure to cache the result.
@@ -40,10 +41,17 @@
         },
 
         /**
+         * This function will be called on add module to the app.
+         */
+        on: function(callback) {
+            callback();
+        },
+
+        /**
          * Hook function to trigger events.
          */
         after: function() {
-            this.fire('tmplInit', this.tmpl);
+            this.fire('tmplInit', this.tmpl, ['tmpl']);
         }
     });
 })(Tc.$);
