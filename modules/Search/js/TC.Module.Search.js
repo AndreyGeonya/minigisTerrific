@@ -70,7 +70,8 @@
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     this.fire('searchError', textStatus, ['search']);
-                }
+                },
+                context: this
             });
         }
     });

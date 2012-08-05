@@ -13,7 +13,7 @@
          * This method called directly after this module inited.
          */
         afterModuleInit: function() {
-            $('#searchBtn', this.$ctx).live('click', this.search);
+            $('#searchBtn', this.$ctx).live('click', $.proxy(this.search, this));
         },
 
         /**
