@@ -10,7 +10,14 @@
      */
     Tc.Module.SearchEventHandler = {
         /**
-         * Handles "tmplInit" event from "tmpl" channel
+         * This method called directly after this module inited.
+         */
+        afterModuleInit: function() {
+            $('#searchBtn', this.$ctx).live('click', this.search);
+        },
+
+        /**
+         * Handles "tmplInit" event from "tmpl" channel.
          * @param {Function} tmpl
          */
         afterTmplInit: function(tmpl) {

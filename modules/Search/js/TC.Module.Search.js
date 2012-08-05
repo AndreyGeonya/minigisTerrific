@@ -32,7 +32,9 @@
         /**
          * Hook function to trigger events.
          */
-        after: function() {},
+        after: function() {
+            this.afterModuleInit();
+        },
 
         /**
          * Draws html form.
@@ -42,6 +44,46 @@
 
             html = this.tmpl($('#tmpl-search').text(), {});
             this.$ctx[0].innerHTML = html;
+        },
+
+        /**
+         * Search firms.
+         */
+        search: function() {
+            $.ajax({
+                url: 'http://catalog.api.2gis.ru/search',
+                data: {
+                    what: $('#what', this.$ctx).attr('value'),
+                    where: $('#where', this.$ctx).attr('value'),
+                    key: Tc.Module.Search.API_KEY,
+                    version: Tc.Module.Search.API_VERSION,
+                    output: 'jsonp'
+                },
+                dataType: 'jsonp',
+                success: function(data) {
+                    if(data.response_code == '200') {
+                        this.fire('searchSuccess', data, ['search']);
+                    }
+                    else {
+                        this.fire('searchError', data.error_message, ['search']);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    this.fire('searchError', textStatus, ['search']);
+                }
+            });
         }
     });
+
+    /**
+     * @const
+     * @type {String}
+     */
+    Tc.Module.Search.API_KEY = 'rujrdp3400',
+
+    /**
+     * @const
+     * @type {Number}
+     */
+    Tc.Module.Search.API_VERSION = 1.3
 })(Tc.$);
