@@ -3,14 +3,10 @@
     
     /**
      * All event handlers of the Search module.
-     *
-     * @method init
-     * @constructor
-     * @param {Tc.Module.Search} module Module, event handler belongs to.
      */
     Tc.Module.SearchEventHandler = {
         /**
-         * This method called directly after this module inited.
+         * This method called directly after this module init.
          */
         afterModuleInit: function() {
             $('#searchBtn', this.$ctx).live('click', $.proxy(this.search, this));
