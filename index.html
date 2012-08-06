@@ -14,6 +14,9 @@
         <script type="text/javascript" src="modules/Search/js/TC.Module.SearchEventHandler.js"></script>
         
         <script type="text/javascript" src="modules/Tmpl/js/TC.Module.Tmpl.js"></script>
+
+        <script type="text/javascript" src="modules/Map/js/TC.Module.Map.js"></script>
+        <script type="text/javascript" src="modules/Map/js/TC.Module.MapEventHandler.js"></script>
     </head>
     <body>
         <div class="page">
@@ -21,7 +24,9 @@
                 <div class="mod mod-search" data-connectors="tmpl, search"></div>
             </div>
             <div class="left-box"></div>
-            <div class="main-box"></div>
+            <div class="main-box">
+                <div class="mod mod-map" data-connectors="search"></div>
+            </div>
 
             <div class="mod mod-tmpl" data-connectors="tmpl"></div>
         </div>
