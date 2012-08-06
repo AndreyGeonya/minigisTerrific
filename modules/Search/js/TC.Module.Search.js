@@ -3,7 +3,8 @@
     
     Tc.Module.Search = Tc.Module.extend({
         /**
-         * Tmpl engine object.
+         * Tmpl engine function.
+         * @type {Function}
          */
         tmpl: null,
 

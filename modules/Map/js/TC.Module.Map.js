@@ -3,6 +3,18 @@
     
     Tc.Module.Map = Tc.Module.extend({
         /**
+         * Tmpl engine function.
+         * @type {Function}
+         */
+        tmpl: null,
+
+        /**
+         * Map object.
+         * @type {DG.Map}
+         */
+        map: null,
+
+        /**
          * Initializes the Search module.
          *
          * @constructor
@@ -29,34 +41,40 @@
          * Hook function to trigger events.
          */
         after: function() {
-            this.afterModuleInit();
-        },
-
-        /**
-         * Draws html form.
-         */
-        drawMap: function() {
         },
 
         /**
          * Init map.
          */
-        initMap: function() {            
+        initMap: function() {
+            var html, self = this;
+
+            html = this.tmpl($('#tmpl-map').text(), {});
+            this.$ctx[0].innerHTML = html;
+
             $.getScript("http://maps.api.2gis.ru/1.0?loadByRequire=1", function() {
-                var map = $('#map')[0];
                 DG.load(function() {
-                    console.log('test');
-                });            
+                    self.map = new DG.Map('map');
+                    self.map.setCenter(new DG.GeoPoint(37.47, 55.45));
+                    self.map.setZoom(8);
+                });
             });
-
-
         },
 
         /**
          * Draws firms on map.
+         * @param {Object} data
          */
-        drawFirmMarkers: function() {
-
+        redrawFirms: function(data) {
+            for(var i = 0; i < data.result.length; i++) {
+                this.map.markers.add(new DG.Markers.MarkerWithBalloon({
+                    geoPoint: new DG.GeoPoint(data.result[i].lon, data.result[i].lat),
+                    balloonOptions: {
+                        contentHtml: data.result[i].name
+                    }
+                }));
+            }
+            this.map.setBounds(this.map.markers.getBounds());
         }
     });
 })(Tc.$);
