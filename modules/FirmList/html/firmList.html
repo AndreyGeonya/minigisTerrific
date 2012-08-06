@@ -1,0 +1,10 @@
+<script type="text/html" id="tmpl-firmList">
+    <ul class="firm-list">
+        <% for (var i = 0; i < arguments[0].length; i++ ) { %>
+            <li>
+                <div><a id="<%=arguments[0][i].id%>" href="javascript:void(0)"><%=arguments[0][i].name%></a></div>
+                <%=arguments[0][i].address%>
+            </li>
+        <% } %>
+        </ul>
+</script>

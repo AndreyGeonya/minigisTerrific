@@ -1,0 +1,15 @@
+.firm-list {
+    overflow: auto;
+    font-size: 80%;
+    height: 480px;
+}
+
+.firm-list li {
+    margin-bottom: 15px;
+    margin-left: -15px;
+    color: #343434;
+}
+
+.firm-list a {
+    color: #0070C0;
+}

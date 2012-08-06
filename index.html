@@ -17,29 +17,48 @@
 
         <script type="text/javascript" src="modules/Map/js/TC.Module.Map.js"></script>
         <script type="text/javascript" src="modules/Map/js/TC.Module.MapEventHandler.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="modules/FirmList/css/firmList.css" />
+        <script type="text/javascript" src="modules/FirmList/js/TC.Module.FirmList.js"></script>
+        <script type="text/javascript" src="modules/FirmList/js/TC.Module.FirmListEventHandler.js"></script>
     </head>
     <body>
         <div class="page">
             <div class="head-box">
+                <div>Поиск организаций Москвы</div>
                 <div class="mod mod-search" data-connectors="tmpl, search"></div>
             </div>
-            <div class="left-box"></div>
+            <div class="left-box">
+                <div class="mod mod-firmList" data-connectors="search, tmpl, firmList"></div>
+            </div>
             <div class="main-box">
-                <div class="mod mod-map" data-connectors="search, tmpl"></div>
+                <div class="mod mod-map" data-connectors="search, tmpl, firmList"></div>
             </div>
 
             <div class="mod mod-tmpl" data-connectors="tmpl"></div>
         </div>
 
         <!-- Templates should be generated and included on deploy -->
+        
         <script type="text/html" id="tmpl-search">
-            <label>Что: <input id="what" type="text" /></label>
-            <label>Где: <input id="where" type="text" /></label>
+            <label>Что: <input id="what" type="text" value="Магазин" /></label>
+            <label>Где: <input id="where" type="text" value="Жукова" /></label>
             <input id="searchBtn" type="button" value="Найти" />
         </script>
 
         <script type="text/html" id="tmpl-map">
             <div style="width: 100%; height: 500px;" id="map"></div>
+        </script>
+
+        <script type="text/html" id="tmpl-firmList">
+            <ul class="firm-list">
+            <% for (var i = 0; i < arguments[0].length; i++ ) { %>
+                <li>
+                    <div><a id="<%=arguments[0][i].id%>" href="javascript:void(0)"><%=arguments[0][i].name%></a></div>
+                    <%=arguments[0][i].address%>
+                </li>
+            <% } %>
+            </ul>
         </script>
     </body>
 </html>

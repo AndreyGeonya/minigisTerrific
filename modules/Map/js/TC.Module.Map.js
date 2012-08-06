@@ -15,6 +15,12 @@
         map: null,
 
         /**
+         * Firm markers.
+         * @type {Object}
+         */
+        _firmMarkers: {},
+
+        /**
          * Initializes the Search module.
          *
          * @constructor
@@ -66,15 +72,28 @@
          * @param {Object} data
          */
         redrawFirms: function(data) {
+            this.map.markers.removeAll();
+            this._firmMarkers = {};
+
             for(var i = 0; i < data.result.length; i++) {
-                this.map.markers.add(new DG.Markers.MarkerWithBalloon({
+                this._firmMarkers[data.result[i].id] = new DG.Markers.MarkerWithBalloon({
                     geoPoint: new DG.GeoPoint(data.result[i].lon, data.result[i].lat),
                     balloonOptions: {
                         contentHtml: data.result[i].name
                     }
-                }));
+                });
+                this.map.markers.add(this._firmMarkers[data.result[i].id]);
             }
+
             this.map.setBounds(this.map.markers.getBounds());
+        },
+
+        /**
+         * Displays firm info in balloon.
+         * @param {String} id Firm ID
+         */
+        showFirm: function(id) {
+            this._firmMarkers[id].showBalloon();
         }
     });
 })(Tc.$);

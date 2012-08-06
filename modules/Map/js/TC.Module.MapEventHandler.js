@@ -20,6 +20,14 @@
          */
         afterSearchSuccess: function(data) {
             this.redrawFirms(data);
+        },
+
+        /**
+         * Handles "firmClick" event from "firmList" channel.
+         * @param {String} id
+         */
+        afterFirmClick: function(id) {
+            this.showFirm(id)
         }
     };
 })(Tc.$);

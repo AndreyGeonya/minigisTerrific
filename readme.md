@@ -1,1 +1,1 @@
-TerrificJS demo application
+TerrificJS and 2GIS API demo application
