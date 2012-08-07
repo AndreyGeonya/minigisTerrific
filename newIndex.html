@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"></meta>
+        <title>2GIS API and TerrificJS example</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="vendors/terrific.js"></script>
+        <script type="text/javascript" src="bootstrap.js" defer="defer"></script>
+
+        <!-- Should be combined to the one file on deploy -->
+        <link rel="stylesheet" type="text/css" href="modules/Search/css/search.css" />
+        <script type="text/javascript" src="modules/Search/js/Tc.Module.Search.js"></script>
+        <script type="text/javascript" src="modules/Search/js/Tc.Module.SearchEventHandler.js"></script>
+        
+        <script type="text/javascript" src="modules/Tmpl/js/Tc.Module.Tmpl.js"></script>
+
+        <script type="text/javascript" src="modules/Map/js/Tc.Module.Map.js"></script>
+        <script type="text/javascript" src="modules/Map/js/Tc.Module.MapEventHandler.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="modules/FirmList/css/firmList.css" />
+        <script type="text/javascript" src="modules/FirmList/js/Tc.Module.FirmList.js"></script>
+        <script type="text/javascript" src="modules/FirmList/js/Tc.Module.FirmListEventHandler.js"></script>
+
+        <script type="text/javascript" src="skins/FirmListAdvanced/js/Tc.Module.FirmList.Advanced.js"></script>
+        <link rel="stylesheet" type="text/css" href="skins/FirmListAdvanced/css/firmListAdvanced.css" />
+    </head>
+    <body>
+        <div class="page">
+            <div class="head-box">
+                <div>Поиск организаций Москвы (версия 2.0)</div>
+                <div class="mod mod-search" data-connectors="tmpl, search"></div>
+            </div>
+            <div class="left-box">
+                <div class="mod mod-firmList skin-firmList-advanced" data-connectors="search, tmpl, firmList"></div>
+            </div>
+            <div class="main-box">
+                <div class="mod mod-map" data-connectors="search, tmpl, firmList"></div>
+            </div>
+
+            <div class="mod mod-tmpl" data-connectors="tmpl"></div>
+        </div>
+
+        <!-- Templates should be generated and included on deploy -->
+        
+        <script type="text/html" id="tmpl-search">
+            <label>Что: <input id="what" type="text" value="Магазин" /></label>
+            <label>Где: <input id="where" type="text" value="Жукова" /></label>
+            <input id="searchBtn" type="button" value="Найти" />
+        </script>
+
+        <script type="text/html" id="tmpl-map">
+            <div style="width: 100%; height: 500px;" id="map"></div>
+        </script>
+
+        <script type="text/html" id="tmpl-firmList">
+            <ul class="firm-list">
+            <% for (var i = 0; i < arguments[0].length; i++ ) { %>
+                <li>
+                    <div><a id="<%=arguments[0][i].id%>" href="javascript:void(0)"><%=arguments[0][i].name%></a></div>
+                    <%=arguments[0][i].address%>
+                </li>
+            <% } %>
+            </ul>
+        </script>
+
+        <script type="text/html" id="tmpl-firmListAdvanced">
+            <ul class="firm-list">
+            <% for (var i = 0; i < arguments[0].length; i++ ) { %>
+                <li>
+                    <div><a id="<%=arguments[0][i].id%>" href="javascript:void(0)"><%=arguments[0][i].name%></a></div>
+                    <%=arguments[0][i].address%>
+                    <div>Координаты: <%=arguments[0][i].lat%>, <%=arguments[0][i].lon%></div>
+                </li>
+            <% } %>
+            </ul>
+        </script>
+    </body>
+</html>

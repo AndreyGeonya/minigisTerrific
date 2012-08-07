@@ -1,0 +1,11 @@
+<script type="text/html" id="tmpl-firmListAdvanced">
+    <ul class="firm-list">
+        <% for (var i = 0; i < arguments[0].length; i++ ) { %>
+            <li>
+                <div><a id="<%=arguments[0][i].id%>" href="javascript:void(0)"><%=arguments[0][i].name%></a></div>
+                    <%=arguments[0][i].address%>
+                    <div>Координаты: <%=arguments[0][i].lat%>, <%=arguments[0][i].lon%></div>
+            </li>
+        <% } %>
+    </ul>
+</script>
